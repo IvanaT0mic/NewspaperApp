@@ -1,0 +1,55 @@
+<div class="login">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm">
+    <span class="login__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          type="username"
+          placeholder="Username"
+          formControlName="username"
+          name="username"
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          loginForm.get('username').invalid && loginForm.get('username').touched
+        "
+      >
+        Username is
+        <strong>
+          <span *ngIf="loginForm.get('username').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+    </span>
+    <span class="login__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          name="password"
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          loginForm.get('password').invalid && loginForm.get('password').touched
+        "
+      >
+        Password is <strong>required</strong>
+      </mat-error>
+    </span>
+    <span>
+      <mat-error *ngIf="loginInvalid"> Credentials doesn't match </mat-error>
+    </span>
+    <button mat-raised-button (click)="login()" [disabled]="!loginForm.valid">
+      Login
+    </button>
+  </form>
+</div>
+<div class="footer"><p (click)="navigateToContactUser()">Contact admin</p></div>

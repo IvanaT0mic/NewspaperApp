@@ -1,0 +1,21 @@
+.context {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #5d4545;
+}
+
+.inner-wrapper {
+  background-color: whitesmoke;
+
+  margin: 10px;
+  padding: 20px 32px;
+  height: calc(100vh - 6rem);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  overflow: scroll;
+  overflow-x: hidden;
+}

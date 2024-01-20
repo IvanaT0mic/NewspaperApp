@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-img">
+    <div (click)="editArticle()" class="edit-cassete" *ngIf="true">Hello</div>
+  </div>
+  <div class="card-info">
+    <p>: {{ article.title }}</p>
+  </div>
+  <div class="card-buttons">
+    <button (click)="openArticle()" type="button" mat-raised-button>
+      See more
+    </button>
+    <p>Author : {{ article.authorUsername }}</p>
+  </div>
+</div>

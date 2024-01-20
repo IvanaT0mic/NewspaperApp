@@ -1,0 +1,76 @@
+<div class="login">
+  <h1>Contact admin</h1>
+  <form [formGroup]="contactForm">
+    <span class="login__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          name="email"
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          contactForm.get('email').invalid && contactForm.get('email').touched
+        "
+      >
+        Email is
+        <strong>
+          <span *ngIf="contactForm.get('email').hasError('required')"
+            >required</span
+          >
+          <span *ngIf="contactForm.get('email').hasError('email')">
+            not in correct format</span
+          >
+        </strong>
+      </mat-error>
+    </span>
+    <span class="login__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          type="title"
+          placeholder="title"
+          formControlName="title"
+          name="title"
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          contactForm.get('title').invalid && contactForm.get('title').touched
+        "
+      >
+        Title is <strong>required</strong>
+      </mat-error>
+    </span>
+    <span class="body__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Body</mat-label>
+        <textarea
+          matInput
+          name="body"
+          formControlName="body"
+          placeholder="Enter your message to Admin"
+        ></textarea>
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          contactForm.get('body').invalid && contactForm.get('body').touched
+        "
+      >
+        Body is <strong>required</strong>
+      </mat-error>
+    </span>
+    <button
+      mat-raised-button
+      (click)="submit()"
+      [disabled]="!contactForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

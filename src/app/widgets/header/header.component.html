@@ -1,0 +1,33 @@
+<div class="nav-buttons row">
+  <button (click)="navigateToArticles()" class="btn" mat-raised-button>
+    Published articles
+  </button>
+  <button
+    (click)="navigateToMyArticles()"
+    *ngIf="isJournalist"
+    class="btn"
+    mat-raised-button
+  >
+    My private articles
+  </button>
+  <button
+    (click)="navigateToUsers()"
+    class="btn"
+    *ngIf="isAdmin"
+    mat-raised-button
+  >
+    Users
+  </button>
+  <button
+    (click)="navigateToTags()"
+    class="btn"
+    *ngIf="isAdmin"
+    mat-raised-button
+  >
+    Tags
+  </button>
+  <button (click)="navigateToProfile()" class="btn" mat-raised-button>
+    Profile
+  </button>
+  <button class="btn" (click)="logout()">Logout</button>
+</div>
