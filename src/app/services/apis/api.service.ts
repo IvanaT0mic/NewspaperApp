@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
 import { ContactAdminModel } from 'src/app/Models/Dtos/ContantAdminModel';
 import { CreateArticleModel } from 'src/app/Models/Dtos/CreateArticleModel';
+import { CreateTagModel } from 'src/app/Models/Dtos/CreateTagModel';
 import { CreateUserModel } from 'src/app/Models/Dtos/CreateUserModel';
 import { LoginModel } from 'src/app/Models/Dtos/LoginModel';
 import { LoginResponseModel } from 'src/app/Models/Dtos/LoginResponseModel';
@@ -32,22 +33,30 @@ export class ApiService {
 
   //ArticleController
 
-  getAll(): Observable<Array<ArticleModel>> {
+  getAllArticles(): Observable<Array<ArticleModel>> {
     return this.http.get<Array<ArticleModel>>(API_KEY + 'article');
   }
 
-  getAllByStatus(status: number): Observable<Array<ArticleModel>> {
+  getAllArticlesByStatus(status: number): Observable<Array<ArticleModel>> {
     return this.http.get<Array<ArticleModel>>(
       API_KEY + 'article/status?status=' + status
     );
   }
 
-  getArticleById(id: number): Observable<Array<ArticleModel>> {
-    return this.http.get<Array<ArticleModel>>(API_KEY + 'article/' + id);
+  getArticleById(id: number): Observable<ArticleModel> {
+    return this.http.get<ArticleModel>(API_KEY + 'article/' + id);
   }
 
   createArticle(data: CreateArticleModel): Observable<number> {
     return this.http.post<number>(API_KEY + 'article', data);
+  }
+
+  getAllPrivateByUserId(id: number): Observable<Array<ArticleModel>> {
+    return this.http.get<Array<ArticleModel>>(API_KEY + 'article/user/' + id);
+  }
+
+  publichArticleById(id: number): Observable<boolean> {
+    return this.http.put<boolean>(API_KEY + 'article/public/' + id, {});
   }
 
   //ResourceController
@@ -78,6 +87,14 @@ export class ApiService {
 
   getTagById(id: number): Observable<TagModel> {
     return this.http.get<TagModel>(API_KEY + 'tag/' + id);
+  }
+
+  deleteTag(id: number): Observable<void> {
+    return this.http.delete<void>(API_KEY + 'tag/' + id);
+  }
+
+  createTag(tag: CreateTagModel): Observable<number> {
+    return this.http.post<number>(API_KEY + 'tag', tag);
   }
 
   //UserController

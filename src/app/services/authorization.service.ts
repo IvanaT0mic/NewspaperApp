@@ -49,6 +49,7 @@ export class AuthorizationService {
 
   logout(): void {
     window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem('user');
     this._token = null;
     this.userService.removeUser();
     this.router.navigate([`/${ConstRouteService.login}`]);

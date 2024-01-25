@@ -1,5 +1,5 @@
 export class ArticleContentModel {
-  type: number;
+  type: string;
   resourceId?: number | null;
   text: string;
 }

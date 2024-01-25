@@ -30,7 +30,9 @@ export class IsAdminGuard implements CanActivate {
       return of(false);
     }
 
-    console.log(this.userService.user.roles);
+    if (this.userService.user.roles.includes('Admin')) {
+      return of(true);
+    }
 
     this.router.navigate([`${ConstRouteService.home}`]);
     return of(false);

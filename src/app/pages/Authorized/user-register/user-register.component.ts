@@ -39,20 +39,27 @@ export class UserRegisterComponent extends CommonComponent implements OnInit {
   save(): void {
     if (!this.userForm.valid) {
       //TODO
-      console.log('popup not valid');
+      console.log('form not valid');
       return;
     }
 
+    console.log(this.userForm.value);
+
     this.newUser.firstName = this.userForm.get('firstName').value;
     this.newUser.lastName = this.userForm.get('lastName').value;
+    this.newUser.username = this.userForm.get('username').value;
     this.newUser.email = this.userForm.get('email').value;
     this.newUser.password = this.userForm.get('password').value;
+    this.newUser.isAdmin = this.userForm.get('isAdmin').value;
+    this.newUser.isJournalist = this.userForm.get('isJournalist').value;
 
     this.userService
       .registerUser(this.newUser)
       .pipe(takeUntil(this.localNgUnsubscribe))
       .subscribe((res) => {
-        this.router.navigate([`${ConstRouteService.userDashboard}`]);
+        this.router.navigate([
+          `${ConstRouteService.home}/${ConstRouteService.userDashboard}`,
+        ]);
       });
   }
 }

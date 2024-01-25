@@ -1,0 +1,9 @@
+.inner-wrapper {
+  width: 100%;
+  height: calc(100vh - 3rem);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}

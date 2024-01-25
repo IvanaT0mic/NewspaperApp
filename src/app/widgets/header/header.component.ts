@@ -38,7 +38,8 @@ export class HeaderComponent implements OnInit {
   }
   navigateToProfile(): void {
     this.route.navigate([
-      `${ConstRouteService.home}/${ConstRouteService.profile}`,
+      `${ConstRouteService.home}/${ConstRouteService.profile}/` +
+        this.userService.user.id,
     ]);
   }
   navigateToArticles(): void {

@@ -16,11 +16,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { ArticleComponent } from '../widgets/article/article.component';
-import { DialogComponent } from '../widgets/dialog/dialog.component';
 import { HeaderComponent } from '../widgets/header/header.component';
 
 @NgModule({
-  declarations: [DialogComponent, HeaderComponent, ArticleComponent],
+  declarations: [HeaderComponent, ArticleComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -62,7 +61,6 @@ import { HeaderComponent } from '../widgets/header/header.component';
     MatNativeDateModule,
 
     HeaderComponent,
-    DialogComponent,
     ArticleComponent,
   ],
 })

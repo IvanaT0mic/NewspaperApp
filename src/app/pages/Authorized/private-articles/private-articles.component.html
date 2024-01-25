@@ -1,0 +1,48 @@
+<h2>Manage private articles</h2>
+<div style="margin-bottom: 20px">
+  <p>When you publish article Admin will get email notification!</p>
+  <button mat-raised-button (click)="createArticle()">
+    Create new article
+  </button>
+</div>
+<div class="row">
+  <table mat-table [dataSource]="dataSource" style="margin-right: 70px">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let article">{{ article.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let article">{{ article.title }}</td>
+    </ng-container>
+
+    <!-- CreateDate Column -->
+    <ng-container matColumnDef="createDate">
+      <th mat-header-cell *matHeaderCellDef>Date created</th>
+      <td mat-cell *matCellDef="let article">{{ article.createDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let article">
+        <button
+          style="margin-right: 10px"
+          mat-raised-button
+          (click)="publicArticle(article.id)"
+        >
+          Public
+        </button>
+        <button mat-raised-button (click)="editArticle(article.id)">
+          Edit
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Define table rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

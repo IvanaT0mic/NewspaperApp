@@ -1,91 +1,102 @@
 <div class="content">
   <form class="form" [formGroup]="userForm" (ngSubmit)="save()">
-    <div class="Group">
-      <label for="firstName" class="form-label">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="firstName"
-        formControlName="firstName"
-      />
-    </div>
-    <mat-error
-      *ngIf="
-        userForm.get('firstName').invalid && userForm.get('firstName').touched
-      "
-    >
-      First name is
-      <strong>
-        <span *ngIf="userForm.get('firstName').hasError('required')"
-          >required</span
-        >
-      </strong>
-    </mat-error>
-    <div class="Group">
-      <label for="lastName" class="form-label">Last Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="lastName"
-        formControlName="lastName"
-      />
-    </div>
-    <mat-error
-      *ngIf="
-        userForm.get('lastName').invalid && userForm.get('lastName').touched
-      "
-    >
-      Last name is
-      <strong>
-        <span *ngIf="userForm.get('lastName').hasError('required')"
-          >required</span
-        >
-      </strong>
-    </mat-error>
+    <div class="row">
+      <div class="Group">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          formControlName="firstName"
+        />
+      </div>
 
-    <div class="Group">
-      <label for="username" class="form-label">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        formControlName="username"
-      />
+      <div class="Group">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+        />
+      </div>
     </div>
-    <mat-error
-      *ngIf="
-        userForm.get('username').invalid && userForm.get('username').touched
-      "
-    >
-      Username is
-      <strong>
-        <span *ngIf="userForm.get('username').hasError('required')"
-          >required</span
-        >
-      </strong>
-    </mat-error>
+    <div class="row">
+      <mat-error
+        *ngIf="
+          userForm.get('firstName').invalid && userForm.get('firstName').touched
+        "
+      >
+        First name is
+        <strong>
+          <span *ngIf="userForm.get('firstName').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          userForm.get('lastName').invalid && userForm.get('lastName').touched
+        "
+      >
+        Last name is
+        <strong>
+          <span *ngIf="userForm.get('lastName').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+    </div>
+    <div class="row">
+      <div class="Group">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          formControlName="username"
+        />
+      </div>
 
-    <div class="Group">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        formControlName="email"
-      />
+      <div class="Group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+      </div>
     </div>
-    <mat-error
-      *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
-    >
-      Email is
-      <strong>
-        <span *ngIf="userForm.get('email').hasError('required')">required</span>
-      </strong>
-    </mat-error>
+    <div class="row">
+      <mat-error
+        *ngIf="
+          userForm.get('username').invalid && userForm.get('username').touched
+        "
+      >
+        Username is
+        <strong>
+          <span *ngIf="userForm.get('username').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+
+      <mat-error
+        *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
+      >
+        Email is
+        <strong>
+          <span *ngIf="userForm.get('email').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+    </div>
     <div class="Group">
       <label for="password" class="form-label">Password</label>
       <input
-        type="password"
+        type="text"
         class="form-control"
         id="password"
         formControlName="password"
@@ -103,6 +114,10 @@
         >
       </strong>
     </mat-error>
+    <div class="row">
+      <input type="checkbox" formControlName="isAdmin" /> Admin
+      <input type="checkbox" formControlName="isJournalist" /> Journalist
+    </div>
     <div class="Group">
       <button
         [ngClass]="!userForm.valid ? 'disabled-button' : 'btn'"
