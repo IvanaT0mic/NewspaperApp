@@ -11,4 +11,8 @@ export class ResourceService {
   getByIdBlob(id: number): Observable<Blob> {
     return this.apiservice.getResourceForDownloadById(id);
   }
+
+  uploadFile(file: FormData): Observable<number> {
+    return this.apiservice.createResource(file);
+  }
 }

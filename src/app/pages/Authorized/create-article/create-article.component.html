@@ -71,7 +71,7 @@
         <h4 class="form-label">Content - Add content</h4>
         <div class="Group">
           <div class="row" style="height: 200px">
-            <div class="col" style="width: 50%; margin-right: 10px">
+            <div class="col" style="width: 50%; margin-right: 20px">
               <p>Text type</p>
               <textarea
                 style="width: 100%"
@@ -88,7 +88,26 @@
                 Add text type content
               </button>
             </div>
-            <div class="col" style="width: 50%"><p>Resource type</p></div>
+            <div class="col" style="width: 50%">
+              <p>Resource type</p>
+              <input
+                style="display: none"
+                type="file"
+                class="file-upload"
+                (change)="uploadImage($event)"
+                #fileUpload
+              />
+              <button
+                type="button"
+                mat-mini-fab
+                color="primary"
+                class="upload-btn"
+                (click)="fileUpload.click()"
+              >
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              {{ fileName || "No file uploaded yet." }}
+            </div>
           </div>
         </div>
         <h4 class="form-label">List of contents</h4>

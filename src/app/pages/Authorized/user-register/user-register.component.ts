@@ -43,8 +43,6 @@ export class UserRegisterComponent extends CommonComponent implements OnInit {
       return;
     }
 
-    console.log(this.userForm.value);
-
     this.newUser.firstName = this.userForm.get('firstName').value;
     this.newUser.lastName = this.userForm.get('lastName').value;
     this.newUser.username = this.userForm.get('username').value;

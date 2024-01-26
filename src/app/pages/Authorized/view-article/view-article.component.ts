@@ -37,9 +37,7 @@ export class ViewArticleComponent extends CommonComponent implements OnInit {
         .pipe(
           takeUntil(this.localNgUnsubscribe),
           map((x) => {
-            console.log(x);
             this.article = x;
-            console.log(this.article.articleContent);
           }),
           finalize(() => (this.spinner = false))
         )
