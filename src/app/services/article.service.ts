@@ -43,4 +43,8 @@ export class ArticleService {
   publishArticleById(id: number): Observable<Boolean> {
     return this.apiService.publichArticleById(id);
   }
+
+  deleteById(id: number): Observable<boolean> {
+    return this.apiService.deleteArticle(id);
+  }
 }

@@ -60,6 +60,10 @@ export class ApiService {
     return this.http.put<boolean>(API_KEY + 'article/public/' + id, {});
   }
 
+  deleteArticle(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(API_KEY + 'article/' + id);
+  }
+
   //ResourceController
   getAllResouces(): Observable<Array<ResourceInfoModel>> {
     return this.http.get<Array<ResourceInfoModel>>(API_KEY + 'resource');

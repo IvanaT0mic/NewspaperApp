@@ -1,16 +1,24 @@
 <div class="card">
   <div class="card-info">
     <h3>{{ article.title }}</h3>
+    <hr />
   </div>
   <div>
     <p>Number of tags: {{ article.numberOfTags }}</p>
     <p>Number of resources: {{ article.numberOfResources }}</p>
     <p>Number of comments: {{ article.numberOfComments }}</p>
+    <p>Author : {{ article.authorUsername }}</p>
   </div>
   <div class="card-buttons">
     <button (click)="openArticle(article.id)" type="button" mat-raised-button>
       See more
     </button>
-    <p>Author : {{ article.authorUsername }}</p>
+    <button
+      *ngIf="isAdmin"
+      mat-raised-button
+      (click)="deleteArtice(article.id)"
+    >
+      Delete this article
+    </button>
   </div>
 </div>

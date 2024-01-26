@@ -58,7 +58,7 @@ export class PrivateArticlesComponent
 
   publicArticle(id: number): void {
     this.articleService.publishArticleById(id).subscribe(() => {
-      window.location.reload();
+      location.reload();
     });
   }
 
