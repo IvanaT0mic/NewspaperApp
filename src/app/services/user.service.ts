@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContactAdminModel } from '../Models/Dtos/ContantAdminModel';
 import { CreateUserModel } from '../Models/Dtos/CreateUserModel';
+import { UpdateUserModel } from '../Models/Dtos/UpdateUserModel';
 import { UserExtendedModel } from '../Models/Dtos/UserExtendedModel';
 import { UserModel } from '../Models/Dtos/UserModel';
 import { ApiService } from './apis/api.service';
@@ -43,6 +44,10 @@ export class UserService {
 
   contactAdmin(data: ContactAdminModel): Observable<any> {
     return this.api.contactAdmin(data);
+  }
+
+  updateUser(id: number, data: UpdateUserModel): Observable<any> {
+    return this.api.updateUser(id, data);
   }
 
   registerUser(user: CreateUserModel): Observable<any> {

@@ -1,3 +1,88 @@
-<p>
-  profil-management works!
-</p>
+<div class="content" *ngIf="!spinner">
+  <form class="form" [formGroup]="userForm" (ngSubmit)="save()">
+    <h2 style="color: #217093">Username: {{ user.username }}</h2>
+    <div class="row">
+      <div class="Group">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          formControlName="firstName"
+        />
+      </div>
+
+      <div class="Group">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <mat-error
+        *ngIf="
+          userForm.get('firstName').invalid && userForm.get('firstName').touched
+        "
+      >
+        First name is
+        <strong>
+          <span *ngIf="userForm.get('firstName').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          userForm.get('lastName').invalid && userForm.get('lastName').touched
+        "
+      >
+        Last name is
+        <strong>
+          <span *ngIf="userForm.get('lastName').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+    </div>
+    <div class="row">
+      <div class="Group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <mat-error
+        *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
+      >
+        Email is
+        <strong>
+          <span *ngIf="userForm.get('email').hasError('required')"
+            >required</span
+          >
+        </strong>
+      </mat-error>
+    </div>
+    <div class="row" *ngIf="isAdmin">
+      <input type="checkbox" formControlName="isAdmin" /> Admin
+      <input type="checkbox" formControlName="isJournalist" /> Journalist
+    </div>
+    <div class="Group">
+      <button
+        [ngClass]="!userForm.valid ? 'disabled-button' : 'btn'"
+        [disabled]="!userForm.valid"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
