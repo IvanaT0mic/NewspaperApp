@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ArticleExtendedModel } from 'src/app/Models/Dtos/ArticleExtendedModel';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
 import { ContactAdminModel } from 'src/app/Models/Dtos/ContantAdminModel';
 import { CreateArticleModel } from 'src/app/Models/Dtos/CreateArticleModel';
@@ -43,8 +44,8 @@ export class ApiService {
     );
   }
 
-  getArticleById(id: number): Observable<ArticleModel> {
-    return this.http.get<ArticleModel>(API_KEY + 'article/' + id);
+  getArticleById(id: number): Observable<ArticleExtendedModel> {
+    return this.http.get<ArticleExtendedModel>(API_KEY + 'article/' + id);
   }
 
   createArticle(data: CreateArticleModel): Observable<number> {

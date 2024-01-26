@@ -9,6 +9,7 @@ export class ConstRouteService {
   static readonly myArticles: string = 'private-articles';
   static readonly createArticle: string = 'create-article';
   static readonly editArticle: string = 'edit-article';
+  static readonly viewArticle: string = 'view-article';
   static readonly tags: string = 'tags';
   static readonly userDashboard: string = 'user-dashboard';
   static readonly profile: string = 'profile';

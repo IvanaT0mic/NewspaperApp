@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs';
+import { map, takeUntil } from 'rxjs';
+import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { ArticleContentTypeEnum } from 'src/app/Models/Const/ArticleContentTypeEnum';
 import { ArticleContentModel } from 'src/app/Models/Dtos/ArticleContentModel';
 import { TagModel } from 'src/app/Models/Dtos/TagModel';
@@ -11,7 +12,7 @@ import { TagService } from 'src/app/services/tag.service';
   templateUrl: './create-article.component.html',
   styleUrls: ['./create-article.component.scss'],
 })
-export class CreateArticleComponent implements OnInit {
+export class CreateArticleComponent extends CommonComponent implements OnInit {
   articleForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -23,12 +24,15 @@ export class CreateArticleComponent implements OnInit {
 
   tags: Array<TagModel> = new Array<TagModel>();
 
-  constructor(private tagService: TagService) {}
+  constructor(private tagService: TagService) {
+    super();
+  }
 
   ngOnInit() {
     this.tagService
       .getAllTags()
       .pipe(
+        takeUntil(this.localNgUnsubscribe),
         map((res) => {
           this.tags = res;
         })

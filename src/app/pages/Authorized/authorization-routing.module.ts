@@ -4,6 +4,7 @@ import { IsAdminGuard } from 'src/app/services/Guards/IsAdmin.guard';
 import { AuthGuardService } from 'src/app/services/Guards/auth.guard';
 import { ConstRouteService } from 'src/app/services/const/const-route.service';
 import { ArticleDashboardComponent } from './article-dashboard/article-dashboard.component';
+import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { AuthorizationComponent } from './authorization.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { PrivateArticlesComponent } from './private-articles/private-articles.component';
@@ -11,6 +12,7 @@ import { ProfilManagementComponent } from './profil-management/profil-management
 import { TagManagementComponent } from './tag-management/tag-management.component';
 import { UserManagemenComponent } from './user-managemen/user-managemen.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ViewArticleComponent } from './view-article/view-article.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,14 @@ const routes: Routes = [
       {
         path: ConstRouteService.createArticle,
         component: CreateArticleComponent,
+      },
+      {
+        path: ConstRouteService.editArticle + '/:id',
+        component: ArticleEditComponent,
+      },
+      {
+        path: ConstRouteService.viewArticle + '/:id',
+        component: ViewArticleComponent,
       },
       { path: '', redirectTo: ConstRouteService.articles, pathMatch: 'full' },
     ],

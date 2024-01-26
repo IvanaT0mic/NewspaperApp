@@ -1,19 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { map } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, takeUntil } from 'rxjs';
+import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
 import { ArticleService } from 'src/app/services/article.service';
 import { ConstRouteService } from 'src/app/services/const/const-route.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-private-articles',
   templateUrl: './private-articles.component.html',
   styleUrls: ['./private-articles.component.scss'],
 })
-export class PrivateArticlesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'createDate', 'actions'];
+export class PrivateArticlesComponent
+  extends CommonComponent
+  implements OnInit
+{
+  displayedColumns: string[] = [
+    'id',
+    'title',
+    'numberOfComments',
+    'numberOfTags',
+    'numberOfResources',
+    'createDate',
+    'updateDate',
+    'actions',
+  ];
   dataSource: Array<ArticleModel> = new Array<ArticleModel>();
 
   articleForm: FormGroup = new FormGroup({
@@ -22,24 +34,32 @@ export class PrivateArticlesComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activeRoute: ActivatedRoute
+  ) {
+    super();
+  }
 
   ngOnInit() {
-    let id = this.userService.user.id;
-    this.articleService
-      .getAllPrivateByUserId(id)
-      .pipe(
-        map((x) => {
-          this.dataSource = x;
-        })
-      )
-      .subscribe();
+    this.activeRoute.params.subscribe((params) => {
+      let id = params['id'];
+
+      this.articleService
+        .getAllPrivateByUserId(id)
+        .pipe(
+          takeUntil(this.localNgUnsubscribe),
+          map((x) => {
+            this.dataSource = x;
+          })
+        )
+        .subscribe();
+    });
   }
 
   publicArticle(id: number): void {
-    this.articleService.publishArticleById(id).subscribe();
+    this.articleService.publishArticleById(id).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   createArticle(): void {

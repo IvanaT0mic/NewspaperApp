@@ -14,6 +14,26 @@
     </ng-container>
 
     <!-- Name Column -->
+    <ng-container matColumnDef="numberOfComments">
+      <th mat-header-cell *matHeaderCellDef>Comments number</th>
+      <td mat-cell *matCellDef="let article">{{ article.numberOfComments }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="numberOfTags">
+      <th mat-header-cell *matHeaderCellDef>Tags number</th>
+      <td mat-cell *matCellDef="let article">{{ article.numberOfTags }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="numberOfResources">
+      <th mat-header-cell *matHeaderCellDef>Resources number</th>
+      <td mat-cell *matCellDef="let article">
+        {{ article.numberOfResources }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Title</th>
       <td mat-cell *matCellDef="let article">{{ article.title }}</td>
@@ -25,18 +45,28 @@
       <td mat-cell *matCellDef="let article">{{ article.createDate }}</td>
     </ng-container>
 
+    <!-- Updatedate Column -->
+    <ng-container matColumnDef="updateDate">
+      <th mat-header-cell *matHeaderCellDef>Date updated</th>
+      <td mat-cell *matCellDef="let article">{{ article.updateDate }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let article">
         <button
           style="margin-right: 10px"
           mat-raised-button
+          (click)="editArticle(article.id)"
+        >
+          Edit
+        </button>
+        <button
+          *ngIf="article.status != 3"
+          mat-raised-button
           (click)="publicArticle(article.id)"
         >
           Public
-        </button>
-        <button mat-raised-button (click)="editArticle(article.id)">
-          Edit
         </button>
       </td>
     </ng-container>

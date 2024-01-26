@@ -1,0 +1,30 @@
+.content {
+  width: 90vw;
+}
+
+.tag-widget {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    min-width: 70px;
+    margin: 10px;
+    border: 1px solid rgb(79, 118, 136);
+    padding: 5px;
+    border-radius: 20px;
+    font-size: large;
+    text-align: center;
+  }
+}
+
+.article-content {
+  border: 1px solid rgb(178, 204, 216);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.article-resource {
+  max-width: 400px;
+  max-height: 200px;
+}

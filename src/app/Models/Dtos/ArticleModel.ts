@@ -7,4 +7,5 @@ export class ArticleModel {
   numberOfResources: number;
   createDate: Date;
   updateDate: Date;
+  status: string;
 }

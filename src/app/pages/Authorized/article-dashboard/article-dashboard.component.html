@@ -1,6 +1,11 @@
 <div class="inner-wrapper">
   <h1>Published articles</h1>
   <div class="cards">
-    <div *ngFor="let x of articles">one more article</div>
+    <div
+      *ngFor="let x of articles"
+      style="border: 1px solid rgb(95, 95, 149); margin: 5px"
+    >
+      <app-article [article]="x"></app-article>
+    </div>
   </div>
 </div>

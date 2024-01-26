@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ArticleExtendedModel } from '../Models/Dtos/ArticleExtendedModel';
 import { ArticleModel } from '../Models/Dtos/ArticleModel';
 import { CreateArticleModel } from './../Models/Dtos/CreateArticleModel';
 import { ApiService } from './apis/api.service';
@@ -27,7 +28,7 @@ export class ArticleService {
     return this.apiService.getAllArticlesByStatus(1);
   }
 
-  getById(id: number): Observable<ArticleModel> {
+  getById(id: number): Observable<ArticleExtendedModel> {
     return this.apiService.getArticleById(id);
   }
 

@@ -11,6 +11,7 @@ import { ProfilManagementComponent } from './profil-management/profil-management
 import { TagManagementComponent } from './tag-management/tag-management.component';
 import { UserManagemenComponent } from './user-managemen/user-managemen.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ViewArticleComponent } from './view-article/view-article.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     ArticleEditComponent,
     CreateArticleComponent,
     PrivateArticlesComponent,
+    ViewArticleComponent,
     ProfilManagementComponent,
     TagManagementComponent,
     UserManagemenComponent,

@@ -1,0 +1,19 @@
+<div class="content" *ngIf="!spinner">
+  <h2 style="text-align: center">Title : {{ article.title }}</h2>
+  <hr />
+  <div class="tag-widget">
+    <h4>Tags</h4>
+    <div *ngFor="let tag of article.tags">{{ tag.title }}</div>
+  </div>
+  <h4>Description</h4>
+  <div *ngFor="let content of article.articleContent">
+    <div class="article-content" *ngIf="content.type == 'TEXT'; else resource">
+      {{ content.text }}
+    </div>
+    <ng-template #resource>
+      <div class="article-content">
+        <img [src]="" alt="Article Image" class="article-resource" />
+      </div>
+    </ng-template>
+  </div>
+</div>
