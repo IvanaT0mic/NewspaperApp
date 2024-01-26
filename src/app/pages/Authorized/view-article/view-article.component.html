@@ -12,7 +12,9 @@
     </div>
     <ng-template #resource>
       <div class="article-content">
-        <img [src]="" alt="Article Image" class="article-resource" />
+        <button mat-raised-button (click)="getFile(content.resourceId)">
+          Download resource with id {{ content.resourceId }}
+        </button>
       </div>
     </ng-template>
   </div>

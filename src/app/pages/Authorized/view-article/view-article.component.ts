@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { finalize, map, takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { ArticleExtendedModel } from 'src/app/Models/Dtos/ArticleExtendedModel';
+import { ResourceService } from 'src/app/services/Resource.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { ArticleContentTypeEnum } from './../../../Models/Const/ArticleContentTypeEnum';
 
@@ -19,8 +21,9 @@ export class ViewArticleComponent extends CommonComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private router: Router,
-    private activeRoute: ActivatedRoute
+    private resourceService: ResourceService,
+    private activeRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {
     super();
   }
@@ -42,5 +45,18 @@ export class ViewArticleComponent extends CommonComponent implements OnInit {
         )
         .subscribe();
     });
+  }
+
+  getFile(id: number): void {
+    this.resourceService
+      .getByIdBlob(id)
+      .pipe(takeUntil(this.localNgUnsubscribe))
+      .subscribe((x) => {
+        const blobUrl = URL.createObjectURL(x);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'downloaded-file.png'; // Change the file name accordingly
+        link.click();
+      });
   }
 }

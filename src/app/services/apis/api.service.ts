@@ -77,8 +77,10 @@ export class ApiService {
     return this.http.delete(API_KEY + 'resource/' + id);
   }
 
-  getResourceForDownloadById(id: number): Observable<String> {
-    return this.http.get<String>(API_KEY + 'resource/download/' + id);
+  getResourceForDownloadById(id: number): Observable<Blob> {
+    return this.http.get(API_KEY + 'resource/download/' + id, {
+      responseType: 'blob',
+    });
   }
 
   //TagController
