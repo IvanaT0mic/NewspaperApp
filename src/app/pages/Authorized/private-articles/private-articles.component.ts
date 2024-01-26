@@ -73,4 +73,13 @@ export class PrivateArticlesComponent
       `${ConstRouteService.home}/${ConstRouteService.editArticle}/` + id,
     ]);
   }
+
+  deleteArticle(id: number): void {
+    this.articleService
+      .deleteById(id)
+      .pipe(takeUntil(this.localNgUnsubscribe))
+      .subscribe(() => {
+        location.reload();
+      });
+  }
 }

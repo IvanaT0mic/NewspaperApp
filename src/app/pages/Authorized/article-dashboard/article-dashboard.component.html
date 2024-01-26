@@ -1,5 +1,9 @@
 <div class="inner-wrapper">
   <h1>Published articles</h1>
+  <button mat-stroked-button (click)="navigateToContactUser()">
+    Contact admin
+  </button>
+  <hr />
   <div class="cards">
     <div
       *ngFor="let x of articles"

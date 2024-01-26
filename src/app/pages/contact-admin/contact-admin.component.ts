@@ -39,7 +39,9 @@ export class ContactAdminComponent implements OnInit {
       if (this.userService.user == null) {
         this.router.navigate([`/${ConstRouteService.login}`]);
       }
-      this.router.navigate([`/${ConstRouteService.home}`]);
+      this.router.navigate([
+        `/${ConstRouteService.home}/${ConstRouteService.articles}`,
+      ]);
     }
   }
 

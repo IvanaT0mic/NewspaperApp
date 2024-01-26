@@ -62,6 +62,13 @@
           Edit
         </button>
         <button
+          style="margin-right: 10px"
+          mat-raised-button
+          (click)="deleteArticle(article.id)"
+        >
+          Delete
+        </button>
+        <button
           *ngIf="article.status != 3"
           mat-raised-button
           (click)="publicArticle(article.id)"

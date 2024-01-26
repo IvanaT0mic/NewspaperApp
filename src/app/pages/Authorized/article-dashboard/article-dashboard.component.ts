@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
+import { ConstRouteService } from 'src/app/services/const/const-route.service';
 import { ArticleService } from './../../../services/article.service';
 
 @Component({
@@ -27,5 +28,9 @@ export class ArticleDashboardComponent
       .subscribe((res) => {
         this.articles = res;
       });
+  }
+
+  navigateToContactUser(): void {
+    this.router.navigate([`${ConstRouteService.contactAdmin}`]);
   }
 }
