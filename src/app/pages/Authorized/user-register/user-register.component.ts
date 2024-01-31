@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
@@ -24,7 +25,11 @@ export class UserRegisterComponent extends CommonComponent implements OnInit {
     isJournalist: new FormControl(false),
   });
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public snackbar: MatSnackBar
+  ) {
     super();
   }
   ngOnInit() {
@@ -38,8 +43,9 @@ export class UserRegisterComponent extends CommonComponent implements OnInit {
 
   save(): void {
     if (!this.userForm.valid) {
-      //TODO
-      console.log('form not valid');
+      this.snackbar.open('no valid form', undefined, {
+        duration: 3000,
+      });
       return;
     }
 

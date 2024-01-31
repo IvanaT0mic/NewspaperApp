@@ -82,4 +82,10 @@ export class PrivateArticlesComponent
         location.reload();
       });
   }
+
+  viewArticle(id: number) {
+    this.router.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.viewArticle}/` + id,
+    ]);
+  }
 }

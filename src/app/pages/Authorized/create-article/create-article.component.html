@@ -47,7 +47,7 @@
           </strong>
         </mat-error>
       </div>
-      <div class="col" style="width: 40%">
+      <div class="col" style="width: 40%; margin-bottom: 20px">
         <h4 class="form-label">Tags</h4>
         <div class="Group" style="display: flex; margin-bottom: 5px">
           <div
@@ -112,7 +112,15 @@
         </div>
         <h4 class="form-label">List of contents</h4>
         <div *ngFor="let content of articleContent">
-          <p>Type: {{ content.type }}</p>
+          <p>
+            <b>Type: {{ content.type }}</b>
+          </p>
+          <p *ngIf="content.type == 'TEXT'; else resource">
+            {{ content.text }}
+          </p>
+          <ng-template #resource>
+            {{ content.resourceId }}
+          </ng-template>
         </div>
       </div>
     </div>

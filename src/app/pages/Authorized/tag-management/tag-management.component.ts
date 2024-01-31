@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { CreateTagModel } from 'src/app/Models/Dtos/CreateTagModel';
@@ -19,7 +20,7 @@ export class TagManagementComponent extends CommonComponent implements OnInit {
     titleOfNew: new FormControl('', [Validators.required]),
   });
 
-  constructor(private tagService: TagService) {
+  constructor(private tagService: TagService, public snackbar: MatSnackBar) {
     super();
   }
 
@@ -39,8 +40,9 @@ export class TagManagementComponent extends CommonComponent implements OnInit {
 
   createTag() {
     if (!this.tagForm.valid) {
-      //TODO
-      console.log('form not valid');
+      this.snackbar.open('no valid form', undefined, {
+        duration: 3000,
+      });
       return;
     }
 

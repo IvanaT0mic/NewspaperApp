@@ -19,6 +19,7 @@ export class LoginComponent extends CommonComponent implements OnInit {
   passEmpty: boolean = false;
   loginInvalid: boolean = false;
   passRegex: RegExp = /^(?=.*[A-Z])(?=.*\d).+$/;
+  spinner = true;
 
   loginForm = this.fb.group({
     username: ['', [Validators.required]],
@@ -42,6 +43,7 @@ export class LoginComponent extends CommonComponent implements OnInit {
       this.loginInvalid = false;
       this.router.navigate([`/${ConstRouteService.home}`]);
     }
+    this.spinner = false;
   }
 
   login(): void {

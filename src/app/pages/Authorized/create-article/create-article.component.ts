@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { map, takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
@@ -36,7 +37,8 @@ export class CreateArticleComponent extends CommonComponent implements OnInit {
     private resourceService: ResourceService,
     private articleService: ArticleService,
     private userService: UserService,
-    private route: Router
+    private route: Router,
+    public snackbar: MatSnackBar
   ) {
     super();
   }
@@ -55,8 +57,9 @@ export class CreateArticleComponent extends CommonComponent implements OnInit {
 
   save(): void {
     if (!this.articleForm.valid) {
-      //TODO
-      console.log('form not valid');
+      this.snackbar.open('no valid form', undefined, {
+        duration: 3000,
+      });
       return;
     }
 
@@ -94,12 +97,16 @@ export class CreateArticleComponent extends CommonComponent implements OnInit {
     content.text = this.articleForm.get('articleContentTextType').value;
 
     this.articleContent.push(content);
+    this.articleForm.controls['articleContentTextType'].setValue('');
   }
 
   uploadImage(event) {
     const file: File = event.target.files[0];
     const formData = new FormData();
     formData.append('data', file);
+    this.snackbar.open('uploading picture and getting id', undefined, {
+      duration: 3000,
+    });
     this.resourceService
       .uploadFile(formData)
       .pipe(takeUntil(this.localNgUnsubscribe))

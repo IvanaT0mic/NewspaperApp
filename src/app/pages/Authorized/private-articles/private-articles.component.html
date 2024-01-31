@@ -69,6 +69,13 @@
           Delete
         </button>
         <button
+          style="margin-right: 10px"
+          mat-raised-button
+          (click)="viewArticle(article.id)"
+        >
+          View
+        </button>
+        <button
           *ngIf="article.status != 3"
           mat-raised-button
           (click)="publicArticle(article.id)"

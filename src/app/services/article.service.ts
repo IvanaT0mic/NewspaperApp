@@ -44,6 +44,10 @@ export class ArticleService {
     return this.apiService.publichArticleById(id);
   }
 
+  updateArticle(id: number, data: CreateArticleModel): Observable<boolean> {
+    return this.apiService.updateArticle(id, data);
+  }
+
   deleteById(id: number): Observable<boolean> {
     return this.apiService.deleteArticle(id);
   }

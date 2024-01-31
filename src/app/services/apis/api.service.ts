@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ArticleExtendedModel } from 'src/app/Models/Dtos/ArticleExtendedModel';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
 import { ContactAdminModel } from 'src/app/Models/Dtos/ContantAdminModel';
-import { CreateArticleModel } from 'src/app/Models/Dtos/CreateArticleModel';
 import { CreateTagModel } from 'src/app/Models/Dtos/CreateTagModel';
 import { CreateUserModel } from 'src/app/Models/Dtos/CreateUserModel';
 import { LoginModel } from 'src/app/Models/Dtos/LoginModel';
@@ -14,6 +13,7 @@ import { TagModel } from 'src/app/Models/Dtos/TagModel';
 import { UpdateUserModel } from 'src/app/Models/Dtos/UpdateUserModel';
 import { UserExtendedModel } from 'src/app/Models/Dtos/UserExtendedModel';
 import { UserModel } from 'src/app/Models/Dtos/UserModel';
+import { CreateArticleModel } from './../../Models/Dtos/CreateArticleModel';
 
 const API_KEY = 'http://localhost:8080/Newspaper/api/';
 
@@ -54,6 +54,10 @@ export class ApiService {
 
   getAllPrivateByUserId(id: number): Observable<Array<ArticleModel>> {
     return this.http.get<Array<ArticleModel>>(API_KEY + 'article/user/' + id);
+  }
+
+  updateArticle(id: number, data: CreateArticleModel): Observable<boolean> {
+    return this.http.put<boolean>(API_KEY + 'article/' + id, data);
   }
 
   publichArticleById(id: number): Observable<boolean> {

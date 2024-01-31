@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
@@ -34,7 +35,8 @@ export class ProfilManagementComponent
   constructor(
     private userService: UserService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public snackbar: MatSnackBar
   ) {
     super();
   }
@@ -68,8 +70,9 @@ export class ProfilManagementComponent
 
   save(): void {
     if (!this.userForm.valid) {
-      //TODO
-      console.log('form not valid');
+      this.snackbar.open('no valid form', undefined, {
+        duration: 3000,
+      });
       return;
     }
 

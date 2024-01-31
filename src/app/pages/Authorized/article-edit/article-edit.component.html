@@ -1,3 +1,129 @@
-<p>
-  article-edit works!
-</p>
+<div class="content" *ngIf="!spinner">
+  <form class="form" [formGroup]="articleForm" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col" style="width: 40%; margin-right: 50px">
+        <div class="Group">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+          />
+        </div>
+        <mat-error
+          *ngIf="
+            articleForm.get('title').invalid && articleForm.get('title').touched
+          "
+        >
+          Title is
+          <strong>
+            <span *ngIf="articleForm.get('title').hasError('title')"
+              >required</span
+            >
+          </strong>
+        </mat-error>
+        <div class="Group">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            style="width: 100%"
+            rows="20"
+            matInput
+            name="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <mat-error
+          *ngIf="
+            articleForm.get('description').invalid &&
+            articleForm.get('description').touched
+          "
+        >
+          Description is
+          <strong>
+            <span *ngIf="articleForm.get('description').hasError('required')"
+              >required</span
+            >
+          </strong>
+        </mat-error>
+      </div>
+      <div class="col" style="width: 40%">
+        <h4 class="form-label">Tags</h4>
+        <div class="Group" style="display: flex; margin-bottom: 5px">
+          <div
+            *ngFor="let tag of tags; index as i"
+            class="row"
+            style="margin: 10px"
+          >
+            <label
+              style="margin: auto; font-size: large"
+              class="checkbox-labels"
+              >{{ tag.title }}</label
+            >
+            <input
+              type="checkbox"
+              [checked]="selectedTags.includes(tag.id)"
+              (change)="onTagChange(tag.id, $event.target['checked'])"
+              [value]="tag.id"
+            />
+          </div>
+        </div>
+        <h4 class="form-label">Content - Add content</h4>
+        <div class="Group">
+          <div class="row" style="height: 200px">
+            <div class="col" style="width: 50%; margin-right: 20px">
+              <p>Text type</p>
+              <textarea
+                style="width: 100%"
+                rows="20"
+                matInput
+                formControlName="articleContentTextType"
+              ></textarea>
+              <button
+                type="button"
+                (click)="addTextTypeContent()"
+                mat-raised-button
+                style="width: 70%; margin: auto; margin-top: 10px"
+              >
+                Add text type content
+              </button>
+            </div>
+            <div class="col" style="width: 50%">
+              <p>Resource type</p>
+              <input
+                style="display: none"
+                type="file"
+                class="file-upload"
+                (change)="uploadImage($event)"
+                #fileUpload
+              />
+              <button
+                type="button"
+                mat-mini-fab
+                color="primary"
+                class="upload-btn"
+                (click)="fileUpload.click()"
+              >
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <h4 class="form-label">List of contents</h4>
+        <hr />
+        <div *ngFor="let content of articleContent">
+          <p>Type: {{ content.type }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="Group">
+      <button
+        [ngClass]="!articleForm.valid ? 'disabled-button' : 'btn'"
+        [disabled]="!articleForm.valid"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

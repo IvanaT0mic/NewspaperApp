@@ -1,4 +1,4 @@
-<div class="login">
+<div class="login" *ngIf="!spinner">
   <h1>Login</h1>
   <form [formGroup]="loginForm">
     <span class="login__input">
