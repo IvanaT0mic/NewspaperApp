@@ -39,10 +39,10 @@ export class ContactAdminComponent implements OnInit {
       if (this.userService.user == null) {
         this.router.navigate([`/${ConstRouteService.login}`]);
       }
-      this.router.navigate([
-        `/${ConstRouteService.home}/${ConstRouteService.articles}`,
-      ]);
     }
+    this.router.navigate([
+      `/${ConstRouteService.home}/${ConstRouteService.articles}`,
+    ]);
   }
 
   submit(): void {
