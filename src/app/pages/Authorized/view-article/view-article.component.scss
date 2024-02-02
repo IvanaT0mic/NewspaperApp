@@ -1,5 +1,10 @@
 .content {
   width: 90vw;
+  gap: 20px;
+}
+
+.col {
+  flex: 1;
 }
 
 .tag-widget {
@@ -27,4 +32,28 @@
 .article-resource {
   max-width: 400px;
   max-height: 200px;
+}
+
+.comment-section {
+  width: 30%;
+  gap: 15px;
+
+  .create-comment {
+    padding: 15px;
+
+    input {
+      margin-right: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      min-width: 250px;
+    }
+  }
+
+  .comment-item {
+    margin-top: 10px;
+    border: 1px solid rgb(79, 118, 136);
+    border-radius: 7px;
+    padding: 10px;
+    min-width: 250px;
+  }
 }

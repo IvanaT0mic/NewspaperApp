@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ArticleExtendedModel } from 'src/app/Models/Dtos/ArticleExtendedModel';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
+import { CommentModel } from 'src/app/Models/Dtos/CommentModel';
 import { ContactAdminModel } from 'src/app/Models/Dtos/ContantAdminModel';
 import { CreateTagModel } from 'src/app/Models/Dtos/CreateTagModel';
 import { CreateUserModel } from 'src/app/Models/Dtos/CreateUserModel';
@@ -14,6 +15,7 @@ import { UpdateUserModel } from 'src/app/Models/Dtos/UpdateUserModel';
 import { UserExtendedModel } from 'src/app/Models/Dtos/UserExtendedModel';
 import { UserModel } from 'src/app/Models/Dtos/UserModel';
 import { CreateArticleModel } from './../../Models/Dtos/CreateArticleModel';
+import { CreateComment } from './../../Models/Dtos/CreateComment';
 
 const API_KEY = 'http://localhost:8080/Newspaper/api/';
 
@@ -106,6 +108,22 @@ export class ApiService {
 
   createTag(tag: CreateTagModel): Observable<number> {
     return this.http.post<number>(API_KEY + 'tag', tag);
+  }
+
+  //CommentController
+
+  getAllCommentsByArticleId(id: number): Observable<Array<CommentModel>> {
+    return this.http.get<Array<CommentModel>>(
+      API_KEY + 'comment/article/' + id
+    );
+  }
+
+  deleteComment(id: number): Observable<void> {
+    return this.http.delete<void>(API_KEY + 'comment/' + id);
+  }
+
+  createComment(data: CreateComment): Observable<number> {
+    return this.http.post<number>(API_KEY + 'comment', data);
   }
 
   //UserController

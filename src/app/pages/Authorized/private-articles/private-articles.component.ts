@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, takeUntil } from 'rxjs';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { ArticleModel } from 'src/app/Models/Dtos/ArticleModel';
 import { ArticleService } from 'src/app/services/article.service';
 import { ConstRouteService } from 'src/app/services/const/const-route.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-private-articles',
@@ -31,11 +33,14 @@ export class PrivateArticlesComponent
   articleForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
   });
+  myArticlesToList: boolean = false;
 
   constructor(
     private articleService: ArticleService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    public snackbar: MatSnackBar,
+    private userService: UserService
   ) {
     super();
   }
@@ -43,6 +48,7 @@ export class PrivateArticlesComponent
   ngOnInit() {
     this.activeRoute.params.subscribe((params) => {
       let id = params['id'];
+      this.myArticlesToList = this.userService.user.id == id;
 
       this.articleService
         .getAllPrivateByUserId(id)
@@ -57,6 +63,9 @@ export class PrivateArticlesComponent
   }
 
   publicArticle(id: number): void {
+    this.snackbar.open('Publishing article ' + id, undefined, {
+      duration: 3000,
+    });
     this.articleService.publishArticleById(id).subscribe(() => {
       location.reload();
     });
@@ -75,6 +84,9 @@ export class PrivateArticlesComponent
   }
 
   deleteArticle(id: number): void {
+    this.snackbar.open('Deleting article ' + id, undefined, {
+      duration: 3000,
+    });
     this.articleService
       .deleteById(id)
       .pipe(takeUntil(this.localNgUnsubscribe))

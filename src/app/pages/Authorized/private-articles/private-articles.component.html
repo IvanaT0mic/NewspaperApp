@@ -61,13 +61,6 @@
         <button
           style="margin-right: 5px"
           mat-raised-button
-          (click)="editArticle(article.id)"
-        >
-          Edit
-        </button>
-        <button
-          style="margin-right: 5px"
-          mat-raised-button
           (click)="deleteArticle(article.id)"
         >
           Delete
@@ -78,6 +71,14 @@
           (click)="viewArticle(article.id)"
         >
           View
+        </button>
+        <button
+          *ngIf="myArticlesToList"
+          style="margin-right: 5px"
+          mat-raised-button
+          (click)="editArticle(article.id)"
+        >
+          Edit
         </button>
         <button
           *ngIf="article.status != 3"
